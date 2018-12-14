@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gpio -g mode 17 out
-gpio -g write 17 1
+gpio -g mode $1 out
+gpio -g write $1 1

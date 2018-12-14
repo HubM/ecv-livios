@@ -15,10 +15,10 @@ app.get('/', (req,res) => {
 
 app.post("/light", function(req, res) {
   if(req.body) {
-    const { on, off } = req.body;
+    const { on, off, light } = req.body;
 
     if (on) {
-      exec('./openLight.sh', (errorLight, stdout, stderr) => {
+      exec(`./openLight.sh ${light}`, (errorLight, stdout, stderr) => {
         if (errorLight) {
           console.log(errorLight);
           return;
@@ -27,7 +27,7 @@ app.post("/light", function(req, res) {
         res.send('Light activate');
       })
     } else if (off) {
-      exec("./closeLight.sh", (errorLight, stdout, stderr) => {
+      exec(`./closeLight.sh ${light}`, (errorLight, stdout, stderr) => {
         if (errorLight) {
           console.log(errorLight);
           return;
